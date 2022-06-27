@@ -1,6 +1,6 @@
 # Protein Ligand Binding Affinity 🧬  
 ![License](https://img.shields.io/github/license/weishengtoh/protein-ligand-binding-affinity?logo=Apache%202.0) 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://weishengtoh-protein-ligand-binding-affi-app-introduction-4l7sb0.streamlitapp.com/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://weishengtoh-protein-ligand-binding-affi-app-introduction-sttzq0.streamlitapp.com/)
 
 The purpose of this project is to develop and train artificial intelligence 
 models that are able to accurately predict how well a ligand will bind to a protein.  
@@ -12,7 +12,7 @@ in the **regression problem**.
 Hence in this project, the aim is to create and/or use existing models that 
 predicts the dissociation constant for any given protein-ligand pair.  
 
-> For a more comprehensive guide on how to use the project, head over to the [streamlit app](https://weishengtoh-protein-ligand-binding-affi-app-introduction-4l7sb0.streamlitapp.com/), 
+> For a more comprehensive guide on how to use the project, head over to the [streamlit app](https://weishengtoh-protein-ligand-binding-affi-app-introduction-sttzq0.streamlitapp.com/), 
 where you will also be able to run your own inference on our pretrained models!  
 
 ## Installation 🛠️  
@@ -88,8 +88,7 @@ To use horovod to train on multiple GPUs on a single node, use the command:
 horovodrun -np <number_of_gpus> python <entry_script> -C <path_to_config_file>
 ```  
 
-> More details on the usage instructions are included in the [streamlit app!](https://weishengtoh-protein-ligand-binding-affi-app-introduction-4l7sb0.streamlitapp.com/)
-
+> More details on the usage instructions are included in the [streamlit app!](https://weishengtoh-protein-ligand-binding-affi-app-introduction-sttzq0.streamlitapp.com/)
 
 ## Dataset 📦
 
