@@ -108,9 +108,9 @@ st.markdown("""
 
     This is inspired by the observation that the models used for protein-ligand 
     binding affinity predictions are usually composed of two different components:  
-        1. an **encoder** component to extract the feature representation 
+        1. an `encoder` component to extract the feature representation 
         for the protein/ligand, **AND**  
-        2. a **regressor** component used to obtain a final regression 
+        2. a `regressor` component used to obtain a final regression 
         output (binding affinity)
 
     Instead of recreating hundreds of models to experiment with, a set of 
@@ -120,6 +120,16 @@ st.markdown("""
     The individual model components are themselves configurable, allowing the 
     *number of layers*, *activation function*, *dropout ratio* etc. to be determined 
     dynamically during runtime in the form of a configuration file.  
+
+    Training hyperparameters such as *learning rate*, *batch size*, *seed*, *max no. of epochs* 
+    etc. can also be modified in the config files.  
+
+    The same goes for inference hyperparameters, which can also be modified using the 
+    config files.  
+
+    `Early stopping` and `Model Checkpoint` functionalities are also provided as callbacks, 
+    which by default stops the training after 20 epochs of no improvement, and saves only 
+    the best model that has been observed.  
 """)
 
 st.markdown("""
@@ -245,5 +255,30 @@ st.markdown("""
     seed. The obvious mitigation is to either:
     1) use cross-validation (which requires more time than we can afford), or 
     2) handcraft the validation and test set using domain knowledge, to ensure that it is representative of the population  
+
+""")
+
+st.markdown("""
+    ### References 📋  
+
+    #### **DeepDTA**
+    - [GitHub](https://github.com/hkmztrk/DeepDTA)  
+    - [Paper](https://arxiv.org/abs/1801.10193)  
+
+    #### **DeepDTAF**  
+    - [GitHub](https://github.com/KailiWang1/DeepDTAF)  
+    - [Paper](https://academic.oup.com/bib/article-abstract/22/5/bbab072/6214647?redirectedFrom=fulltext)  
+
+    #### **GraphDTA**  
+    - [GitHub](https://github.com/thinng/GraphDTA)  
+    - [Paper](https://academic.oup.com/bioinformatics/article/37/8/1140/5942970)
+
+    #### **Evolutional Scale Modelling** 
+    - [GitHub](https://github.com/facebookresearch/esm)  
+    - [Paper](https://www.biorxiv.org/content/10.1101/622803v4)  
+
+    #### **ProtTrans**
+    - [GitHub](https://github.com/agemagician/ProtTrans)  
+    - [Paper](https://arxiv.org/abs/2007.06225)  
 
 """)

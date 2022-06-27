@@ -185,11 +185,12 @@ dynamically during runtime in the form of a configuration file.
 Training hyperparameters such as *learning rate*, *batch size*, *seed*, *max no. of epochs* 
 etc. can also be modified in the config files.  
 
-The same goes for inference hyperparameters, 
+The same goes for inference hyperparameters, which can also be modified using the 
+config files.  
 
 `Early stopping` and `Model Checkpoint` functionalities are also provided as callbacks, 
 which by default stops the training after 20 epochs of no improvement, and saves only 
-the best model that has been observed as PyTorch checkpoint. 
+the best model that has been observed.  
 
 ## Key Tools Used 🪛 
 
