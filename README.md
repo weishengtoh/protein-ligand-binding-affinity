@@ -88,6 +88,30 @@ To use horovod to train on multiple GPUs on a single node, use the command:
 horovodrun -np <number_of_gpus> python <entry_script> -C <path_to_config_file>
 ```  
 
+### Entry Scripts
+
+The available entry scripts are:
+| SCRIPT | DESCRIPTION |  
+| ------ | ----------- |  
+| train.py | Runs the training on a single GPU. Training logs and models are stored locally. |
+| train_wandb.py | Runs the training on a single GPU. Training logs are uploaded to Weights and Biases (wandb) in real-time for experiment tracking and visualisation. Trained model are also uploaded to wandb for model versioning. | 
+| predict.py | Generates the prediction on a single GPU/CPU. Prediction outputs are saved in the `outputs` folder. |
+| train_horovod.py | Runs the training on multiple GPUs in a single node. Training logs are uploaded to wandb in real-time for experiment tracking and visualisation. Trained model are also uploaded to wandb for model versioning. | 
+
+### Predefined Configuration Files
+
+Configuration files are defined in the form of a yaml file, and they are where 
+the user may choose to modify the *model, training and inference* parameters.  
+
+There are several predefined configurations file included in the folder `configs` that corresponds to a pretrained model in the `pretrained` folder:   
+| SMILES ENCODER | FASTA ENCODER | REGRESSOR | CONFIG FILE| TRAINED MODEL | 
+| -------------- | ------------- | --------- | ---------- | ------------- | 
+| Convolutional 1D | Convolutional 1D | Fully Connected | configs/cnn_cnn.yaml | pretrained/cnn_cnn.yaml | 
+| Graph Convolutional Network | Convolutional 1D | Fully Connected | configs/gcn_cnn.yaml | pretrained/gcn_cnn.yaml | 
+| Graph Isomorphism Network *(Attribute Masking)* | Convolutional 1D | Fully Connected | configs/ginmask_cnn.yaml | pretrained/ginmask_cnn | 
+| Graph Isomorphism Network *(Edge Existence Prediction)* | Convolutional 1D | Fully Connected | configs/ginedgepred_cnn.yaml | pretrained/ginedgepred_cnn | 
+| Graph Isomorphism Network *(Maximising Node and Pooled Global Graph Info)* | Convolutional 1D | Fully Connected | configs/gininfomax_cnn.yaml | pretrained/gininfomax_cnn |    
+  
 > More details on the usage instructions are included in the [streamlit app!](https://weishengtoh-protein-ligand-binding-affi-app-introduction-sttzq0.streamlitapp.com/)
 
 ## Dataset 📦
@@ -139,7 +163,7 @@ To work with the data, we have adopted a ***80/10/10*** segregation strategy for
 ***train/val/test*** splits. The data is randomly shuffled during segregation, and 
 the randomisation is seeded to allow the results to be reproducible.  
 
-### Approach 🔬
+## Approach 🔬
 This project introduces the use of modular model components to build the 
 overall model architecture.  
 
