@@ -51,7 +51,7 @@ are defined using the docker image ***(option 2 below)***
     To download the image into your local machine, run the following command 
     in your terminal:  
     ```shell
-    docker pull weishengtoh/capstone_pytorch:horovod_v1.0.0
+    docker pull weishengtoh/capstone_pytorch:horovod_v1
     ```  
     Run the docker container interatively, mounting the volume and selecting the GPU(s).  
     Make sure that the volume mounted is the path to the project root folder.
