@@ -136,54 +136,60 @@ st.markdown("""
     ### Results 📝 
 """)
 
+col0 = [
+    'cnn_cnn', 'gcn_cnn', 'ginmask_cnn', 'ginedgepred_cnn', 'gininfomax_cnn',
+    'gincontextpred_cnn'
+]
 col1 = [
-    'Conv1D', 'Conv1D', 'Fully_Connected', '74', '0.6945 (worst)',
-    '0.6331 (worst)', '0.7997 (worst)', '0.4358', '0.6089 (worst)',
-    '36.7347 (worst)', '11.8876', '5.5912'
+    'Conv1D', 'Graph Convolutional', 'DGL_GIN_AttrMasking', 'DGL_GIN_EdgePred',
+    'DGL_GIN_InfoMax', 'DGL_GIN_ContextPred'
 ]
-
-col2 = [
-    'Graph_Convolutional', 'Conv1D', 'Fully_Connected', '110', '0.6242 (best)',
-    '0.6971 (best)', '0.8351 (best)', '0.3997 (best)', '0.6418 (best)',
-    '57.1429 (best)', '11.5663', '5.5711 (worst)'
-]
-
+col2 = ['Conv1D', 'Conv1D', 'Conv1D', 'Conv1D', 'Conv1D', 'Conv1D']
 col3 = [
-    'DGL_GIN_AttrMasking', 'Conv1D', 'Fully_Connected', '342', '0.634',
-    '0.6911', '0.8345', '0.4209', '0.6267', '54.5455', '12.5451',
-    '6.1824 (best)'
+    'Fully_Connected', 'Fully_Connected', 'Fully_Connected', 'Fully_Connected',
+    'Fully_Connected', 'Fully_Connected'
 ]
-
-col4 = [
-    'DGL_GIN_EdgePred', 'Conv1D', 'Fully_Connected', '255', '0.643', '0.6822',
-    '0.8315', '0.4308', '0.6255', '52', '12.24', '5.93'
-]
-
-col5 = [
-    'DGL_GIN_InfoMax', 'Conv1D', 'Fully_Connected', '290', '0.636', '0.6886',
-    '0.8337', '0.4277', '0.627', '48.4848', '12.7856 (best)', '6.0621'
-]
-
+col4 = ['74', '242', '342', '255', '290', '209']
+col5 = ['0.6945 (worst)', '0.6091 (best)', '0.634', '0.643', '0.636', '0.6555']
 col6 = [
-    'DGL_GIN_ContextPred', 'Conv1D', 'Fully_Connected', '209', '0.6555',
-    '0.6698', '0.8245', '0.4407 (worst)', '0.6164', '53.5354',
-    '11.4629 (worst)', '5.7916'
+    '0.6331 (worst)', '0.7111 (best)', '0.6911', '0.6822', '0.6886', '0.6698'
 ]
+col7 = [
+    '0.7997 (worst)', '0.8435 (best)', '0.8345', '0.8315', '0.8337', '0.8245'
+]
+col8 = [
+    '0.4358', '0.3989 (best)', '0.4209', '0.4308', '0.4277', '0.4407 (worst)'
+]
+col9 = [
+    '0.6089 (worst)', '0.6466 (best)', '0.6267', '0.6255', '0.627', '0.6164'
+]
+col10 = [
+    '36.7347 (worst)', '54.5455 (best)', '54.5455 (best)', '52', '48.4848',
+    '53.5354'
+]
+col11 = [
+    '11.8876', '12.3046', '12.5451', '12.24', '12.7856 (best)',
+    '11.4629 (worst)'
+]
+col12 = ['5.5912', '6.1022', '6.1824', '5.93', '6.0621', '5.7916 (worst)']
 
 results = pd.DataFrame()
-results['cnn_cnn'] = col1
-results['gcn_cnn'] = col2
-results['ginmask_cnn'] = col3
-results['ginedgepred_cnn'] = col4
-results['gininfomax_cnn'] = col5
-results['gincontextpred_cnn'] = col6
+results['model'] = col0
+results['smiles_encoder'] = col1
+results['sequence_encoder'] = col2
+results['regressor'] = col3
+results['epochs'] = col4
+results['rmse'] = col5
+results['r2score'] = col6
+results['pearson'] = col7
+results['mae'] = col8
+results["kendall's tau"] = col9
+results["enrichment factor* 1%"] = col10
+results["enrichment factor* 5%"] = col11
+results["enrichment factor* 10%"] = col12
 
-index = [
-    'smiles_encoder', 'sequence_encoder', 'regressor', 'epochs', 'rmse',
-    'r2score', 'pearson', 'mae', "kendall's tau", 'enrichment factor* 1%',
-    'enrichment factor* 5%', 'enrichment factor* 10%'
-]
-results.index = index
+results.set_index('model', inplace=True)
+results.index.name = 'model'
 
 st.dataframe(results)
 

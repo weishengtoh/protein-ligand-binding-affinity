@@ -134,7 +134,7 @@ def obtain_callbacks() -> List[Callback]:
 
     earlystopping = EarlyStopping(monitor='loss',
                                   min_delta=0.0001,
-                                  patience=20,
+                                  patience=30,
                                   mode='min')
     modelcheckpoint = ModelCheckpoint(monitor='loss',
                                       save_best_only=True,
