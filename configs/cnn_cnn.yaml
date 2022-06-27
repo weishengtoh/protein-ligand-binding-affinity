@@ -1,0 +1,69 @@
+# --- DEFINE THE MODEL HYPERPARAMETERS HERE --- #
+architecture: 'cnn_cnn'
+model:                                            
+  smiles_config:                                  # Define the encoder architecture for smiles
+    name: 'Conv1DEncoder'
+    feature_dim: 100
+    batch_norm: True
+    out_channels: 
+      - 32
+      - 64
+      - 96
+    kernel_size:
+      - 4
+      - 6
+      - 8
+    embed_dim: 128
+    activation: 'ReLU'
+    dropout: 0.1
+  sequence_config:                                # Define the encoder architecture for sequences
+    name: 'Conv1DEncoder'
+    feature_dim: 1000
+    batch_norm: True
+    out_channels: 
+      - 32
+      - 64
+      - 96
+    kernel_size:
+      - 4
+      - 8
+      - 12
+    embed_dim: 128
+    activation: 'ReLU'
+    dropout: 0.1
+  regressor_config:                               # Define the regressor architecture
+    name: 'DenseRegressor'
+    feature_dim: 192
+    out_features: 
+      - 1024
+      - 1024
+      - 512
+      - 1
+    activation: 'ReLU'
+    dropout: 0.1
+
+### --- DEFINE THE TRAINING HYPERPARAMETERS HERE --- ###
+train:
+  model_path: 'ck_pts'                            # folder to save the trained model
+  data_path: 'data/RP_PLB_100000_42.parquet'      # data path
+  epochs: 200                                     # number of epochs to train on
+  learning_rate: 0.0003                           # initial learning rate
+  seed: 42                                        # random seed
+  batch_size: 32                                  # batch size for data
+  val_ratio: 0.1                                  # validation ratio
+  test_ratio: 0.1                                 # test ratio
+  shuffle: True                                   # shuffle the data
+  drop_last: True                                 # drop the last non-filled batch of data 
+  label: 'Label'                                  # Target column name (binding affinity)
+  smiles: 'SMILES'                                # SMILES column name (ligand/compound) 
+  sequence: 'Target Sequence'                     # FASTA column name (protein sequence)
+
+### --- DEFINE THE INFERENCE HYPERPARAMETERS HERE --- ###
+predict:
+  ck_pt: 'pretrained/cnn_cnn'                     # path to load the trained model
+  data_path: 'data/RP_PLB_100000_42.parquet'      # data path
+  seed: 42                                        # random seed
+  batch_size: 32                                  # batch size for data
+  label: 'Label'                                  # Target column name (binding affinity) - OPTIONAL
+  smiles: 'SMILES'                                # SMILES column name (ligand/compound) 
+  sequence: 'Target Sequence'                     # FASTA column name (protein sequence)

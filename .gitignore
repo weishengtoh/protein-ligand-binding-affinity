@@ -1,0 +1,27 @@
+# Ignore the data folder
+data/
+
+# Ignore pycache folders
+__pycache__/
+
+#Ignore TensorBoard logs
+runs/
+
+# Ignore hydra outputs
+multirun/
+outputs/
+
+# Ignore the work in progress codes
+work_in_progress/
+
+# Ignore logs
+logs/
+
+# Ignore checkpoints
+ck_pts/
+
+# Ignore wandb outputs
+wandb/
+
+# Ignore docker build folder
+docker/  

@@ -1,0 +1,58 @@
+# --- DEFINE THE MODEL HYPERPARAMETERS HERE --- #
+architecture: 'gininfomax_cnn'
+model:                                            
+  smiles_config:                                  # Define the encoder architecture for smiles
+    name: 'DGL_GIN_InfoMax'
+    feature_dim: 300
+    predictor_dim: 256
+    dropout: 0.1
+    pooling: 'average'
+  sequence_config:                                # Define the encoder architecture for sequences
+    name: 'Conv1DEncoder'
+    feature_dim: 1000
+    out_channels: 
+      - 512
+      - 256
+      - 128
+    kernel_size:
+      - 8
+      - 8
+      - 8
+    embed_dim: 128
+    activation: 'ReLU'
+    dropout: 0.2
+  regressor_config:                               # Define the regressor architecture
+    name: 'DenseRegressor'
+    feature_dim: 384
+    out_features: 
+      - 1024
+      - 512
+      - 1
+    activation: 'ReLU'
+    dropout: 0.2
+
+### --- DEFINE THE TRAINING HYPERPARAMETERS HERE --- ###
+train:
+  model_path: 'ck_pts'                            # folder to save the trained model
+  data_path: 'data/RP_PLB_100000_42.parquet'      # data path
+  epochs: 500                                     # number of epochs to train on
+  learning_rate: 0.0003                           # initial learning rate
+  seed: 42                                        # random seed
+  batch_size: 256                                 # batch size for data
+  val_ratio: 0.10                                 # validation ratio
+  test_ratio: 0.10                                # test ratio
+  shuffle: True                                   # shuffle the data
+  drop_last: True                                 # drop the last non-filled batch of data 
+  label: 'Label'                                  # Target column name (binding affinity)
+  smiles: 'SMILES'                                # SMILES column name (ligand/compound) 
+  sequence: 'Target Sequence'                     # FASTA column name (protein sequence)
+
+### --- DEFINE THE INFERENCE HYPERPARAMETERS HERE --- ###
+predict:
+  ck_pt: 'pretrained/gininfomax_cnn'              # path to load the trained model
+  data_path: 'data/RP_PLB_100000_42.parquet'      # data path
+  seed: 42                                        # random seed
+  batch_size: 256                                 # batch size for data
+  label: 'Label'                                  # Target column name (binding affinity) - OPTIONAL
+  smiles: 'SMILES'                                # SMILES column name (ligand/compound) 
+  sequence: 'Target Sequence'                     # FASTA column name (protein sequence)

@@ -1,0 +1,47 @@
+# --- DEFINE THE MODEL HYPERPARAMETERS HERE --- #
+architecture: 'ginedgepred_protbert'
+model:                                            
+  smiles_config:                                  # Define the encoder architecture for smiles
+    name: 'DGL_GIN_EdgePred'
+    feature_dim: 300
+    predictor_dim: 256
+    dropout: 0.1
+    pooling: 'average'
+  sequence_config:                                # Define the encoder architecture for sequences
+    name: 'PoolingEncoder'
+    pooling: 'average'
+  regressor_config:                               # Define the regressor architecture
+    name: 'DenseRegressor'
+    feature_dim: 1280
+    out_features: 
+      - 1024
+      - 512
+      - 1
+    activation: 'ReLU'
+    dropout: 0.2
+
+### --- DEFINE THE TRAINING HYPERPARAMETERS HERE --- ###
+train:
+  model_path: 'ck_pts'                            # folder to save the trained model
+  data_path: 'data/RP_PLB_100000_42.parquet'      # data path
+  epochs: 300                                     # number of epochs to train on
+  learning_rate: 0.0003                           # initial learning rate
+  seed: 42                                        # random seed
+  batch_size: 256                                 # batch size for data
+  val_ratio: 0.1                                  # validation ratio
+  test_ratio: 0.1                                 # test ratio
+  shuffle: True                                   # shuffle the data
+  drop_last: True                                 # drop the last non-filled batch of data 
+  label: 'Label'                                  # Target column name (binding affinity)
+  smiles: 'SMILES'                                # SMILES column name (ligand/compound) 
+  sequence: 'Target Sequence'                     # FASTA column name (protein sequence)
+  
+### --- DEFINE THE INFERENCE HYPERPARAMETERS HERE --- ###
+predict:
+  ck_pt: 'pretrained/ginedgepred_protbert'        # path to load the trained model
+  data_path: 'data/RP_PLB_100000_42.parquet'      # data path
+  seed: 42                                        # random seed
+  batch_size: 256                                 # batch size for data
+  label: 'Label'                                  # Target column name (binding affinity) - OPTIONAL
+  smiles: 'SMILES'                                # SMILES column name (ligand/compound) 
+  sequence: 'Target Sequence'                     # FASTA column name (protein sequence)
