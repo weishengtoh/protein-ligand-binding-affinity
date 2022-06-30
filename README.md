@@ -231,4 +231,8 @@ training.
 
 #### **ProtTrans**
 - [GitHub](https://github.com/agemagician/ProtTrans)  
-- [Paper](https://arxiv.org/abs/2007.06225)  
+- [Paper](https://arxiv.org/abs/2007.06225)
+
+#### **Pre-Trained GIN**
+- [Paper](https://arxiv.org/abs/1905.12265)
+- [Package](https://lifesci.dgl.ai/api/model.pretrain.html)
