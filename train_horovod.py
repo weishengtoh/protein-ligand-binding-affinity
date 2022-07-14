@@ -19,14 +19,6 @@ from utils.history import History
 import wandb
 import horovod.torch as hvd
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
-logger = logging.getLogger()
-
-# Define the name of the columns
-SEQUENCE = 'Target Sequence'
-SMILES = 'SMILES'
-LABEL = 'Label'
-
 
 def run(args):
 
@@ -62,12 +54,12 @@ def run(args):
     ### --- LOAD DATA --- ###
     df = pd.read_parquet(train_config['data_path'])
     dataloader_samplers = model.load_data(dataframe=df,
-                                          smiles=SMILES,
-                                          sequence=SEQUENCE,
+                                          smiles=train_config['smiles'],
+                                          sequence=train_config['sequence'],
                                           num_replicas=hvd.size(),
                                           rank=hvd.rank(),
                                           world_size=hvd.size(),
-                                          label=LABEL,
+                                          label=train_config['label'],
                                           mode='train')
     train_dl, val_dl, test_dl = dataloader_samplers['dataloaders']
     train_sampler, val_sampler, test_sampler = dataloader_samplers['samplers']

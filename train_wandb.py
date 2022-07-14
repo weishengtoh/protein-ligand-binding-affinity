@@ -18,14 +18,6 @@ from model.custom_model import CustomModel
 from utils.callbacks import Callback, EarlyStopping, ModelCheckpoint
 from utils.history import History
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
-logger = logging.getLogger()
-
-# Define the name of the columns
-SEQUENCE = 'Target Sequence'
-SMILES = 'SMILES'
-LABEL = 'Label'
-
 
 def run(args):
 
@@ -58,9 +50,9 @@ def run(args):
         ### --- LOAD DATA --- ###
         df = pd.read_parquet(train_config['data_path'])
         dataloader_samplers = model.load_data(dataframe=df,
-                                              smiles=SMILES,
-                                              sequence=SEQUENCE,
-                                              label=LABEL,
+                                              smiles=train_config['smiles'],
+                                              sequence=train_config['sequence'],
+                                              label=train_config['label'],
                                               mode='train')
         train_dl, val_dl, test_dl = dataloader_samplers['dataloaders']
 

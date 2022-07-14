@@ -53,6 +53,6 @@ predict:
   data_path: 'data/RP_PLB_100000_42.parquet'      # data path
   seed: 42                                        # random seed
   batch_size: 256                                  # batch size for data
-  label: 'Label'                                  # Target column name (binding affinity) - OPTIONAL
+  label: 'Label'                                  # Target column name (binding affinity) - OPTIONAL, use null
   smiles: 'SMILES'                                # SMILES column name (ligand/compound) 
   sequence: 'Target Sequence'                     # FASTA column name (protein sequence)

@@ -16,14 +16,6 @@ from utils.history import History
 from metrics.metrics import EnrichmentFactor, KendallTau
 from model.custom_model import CustomModel, Models
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
-logger = logging.getLogger()
-
-# Define the name of the columns
-SEQUENCE = 'Target Sequence'
-SMILES = 'SMILES'
-LABEL = 'Label'  # Label not required for prediction, but needed if running evaluation
-
 
 def run(args):
 
@@ -45,9 +37,9 @@ def run(args):
     ### --- LOAD DATA --- ###
     df = pd.read_parquet(predict_config['data_path'])
     dataloader_samplers = model.load_data(dataframe=df,
-                                          smiles=SMILES,
-                                          sequence=SEQUENCE,
-                                          label=LABEL,
+                                          smiles=predict_config['smiles'],
+                                          sequence=predict_config['sequence'],
+                                          label=predict_config['label'],
                                           mode='predict')
     dataloader, _, _ = dataloader_samplers['dataloaders']
 
