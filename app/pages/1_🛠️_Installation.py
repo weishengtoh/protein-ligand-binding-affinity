@@ -18,8 +18,8 @@ st.markdown("""
 """)
 
 st.info("""
-NOTE:** Running multi-GPUs training *(single node)* requires that the dependencies 
-are defined using the docker image ***(option 2 below)  
+**NOTE:** Running multi-GPUs training *(single node)* requires that the dependencies 
+are defined using the docker image ***(option 2 below)***  
 """)
 
 st.markdown("""
