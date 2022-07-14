@@ -262,9 +262,9 @@ st.markdown("""
     | predict.data_path | *(str)* Path to the raw data |
     | predict.seed | *(int)* Seed value for reproducibility | 
     | predict.batch_size | *(int)* Batch size to use |  
-    | train.label | *(str)* Name of the column for the target variable (binding affinity) |
-    | train.smiles | *(str)* Name of the column for the SMILES input (ligand/compound) |
-    | train.sequence | *(str)* Name of the column for the FASTA input (protein sequence) |
+    | predict.label | *(str)* Name of the column for the target variable (binding affinity) |
+    | predict.smiles | *(str)* Name of the column for the SMILES input (ligand/compound) |
+    | predict.sequence | *(str)* Name of the column for the FASTA input (protein sequence) |
     
     #####  
 """)
